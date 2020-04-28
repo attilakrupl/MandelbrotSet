@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -48,6 +49,8 @@ int main()
     lInputFile >> lMinR >> lMaxR >> lMinI >> lMaxI;
     lInputFile.close();
 
+    //std::chrono::system_clock::time_point lNow   = std::chrono::system_clock::now();
+    //long                                  lNowMS = std::chrono::time_point_cast<std::chrono::milliseconds>( lNow ).time_since_epoch().count();
 
     ofstream lOutputFile( "output_image.ppm" );
     lOutputFile << "P3" << endl;
@@ -64,9 +67,9 @@ int main()
 
             int lMandelbrot = findMandelbrot( lCReal, lCImaginary, lMaxN );
 
-            int lRed   = ( lMandelbrot % 256 );
-            int lGreen = ( lMandelbrot % 256 );
-            int lBlue  = ( ( lMandelbrot * lMandelbrot ) % 256 );
+            int lRed   = ( (int)(lMandelbrot * sinf( (float)lMandelbrot ) ) % 256 );
+            int lGreen = ( ( lMandelbrot * lMandelbrot ) % 256 );
+            int lBlue  = ( lMandelbrot % 256 );
 
             lOutputFile << lRed << " " << lGreen << " " << lBlue << " ";
         }
