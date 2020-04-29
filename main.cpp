@@ -67,9 +67,11 @@ int main()
 
             int lMandelbrot = findMandelbrot( lCReal, lCImaginary, lMaxN );
 
-            int lRed   = ( (int)(lMandelbrot * sinf( (float)lMandelbrot ) ) % 256 );
-            int lGreen = ( ( lMandelbrot * lMandelbrot ) % 256 );
-            int lBlue  = ( lMandelbrot % 256 );
+            int lColor = ( 255 - lMandelbrot ) % 255;
+
+            int lGreen = ( (int)(lColor * sinf( (float)lColor) ) % 256 );
+            int lRed = ( (lColor * lColor) % 256 );
+            int lBlue  = ( lColor % 256 );
 
             lOutputFile << lRed << " " << lGreen << " " << lBlue << " ";
         }

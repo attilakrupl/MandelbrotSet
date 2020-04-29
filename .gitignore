@@ -112,3 +112,6 @@ ipch/
 
 #Other
 *.ppm
+
+#Nuget packages
+packages/
